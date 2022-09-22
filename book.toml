@@ -4,3 +4,7 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Zcash Modular Scalable Payments Architecture"
+
+[build]
+# Follow gh pages convention:
+build-dir = "./docs"
