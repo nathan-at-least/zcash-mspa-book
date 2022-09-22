@@ -1,3 +1,15 @@
 # Summary
 
 - [Introduction](./introduction.md)
+  - [What is Safety](./introduction/what-is-safety.md)
+  - [Usability](./introduction/usability.md)
+- [Design Principles](./design-principles.md)
+  - [Unifying Privacy, Availability, and Privacy](./design-principles/unification.md)
+  - [Roles and Their Needs](./design-principles/roles-and-their-needs.md)
+  - [Modularity](./design-principles/modularity.md)
+  - [Economic Sustainability](./design-principles/economic-sustainability.md)
+- [Overview](./overview.md)
+  - [Consensus Layer](./overview/consensus-layer.md)
+  - [Wallet Data Availability](./overview/wallet-data-availability.md)
+  - [Wallet Reception](./overview/wallet-reception.md)
+  - [Network Privacy](./overview/network-privacy.md)
