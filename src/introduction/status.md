@@ -8,8 +8,8 @@ The ideas here are "unofficial" and there are currently no plans at [Electric Co
 
 ## Acknowledgements
 
-The ideas in this document were stimulated from a variety of discussions with **[FIXME: acknowledge ppl here]**, although I take full responsibility for their presentation here and do not claim any of those great conversation partners endorse any particular idea here.
+The ideas in this document were stimulated from a variety of discussions with Zooko, Sean Bowe, Steven Smith, Vitalik Buterin, David Campbell, and too many others to name. I take full responsibility for their presentation here and do not claim any of those great conversation partners endorse any particular idea here.
 
 ## Updates
 
-I will update this document site as I continue to have discussions and develop the ideas. I will update this section if any of the above changes, including if I find that the central tenants of these ideas are infeasible.
+I will update this document site as I continue to have discussions and develop the ideas, and reserve the possibility to substantially change the contents. I will update this section if any of the above changes, including if I find that the central tenants of these ideas are infeasible.
