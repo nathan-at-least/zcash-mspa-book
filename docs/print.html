@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Zcash Modular Scalable Payments Architecture</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="introduction/status.html"><strong aria-hidden="true">1.1.</strong> Status</a></li><li class="chapter-item expanded "><a href="introduction/what-is-safety.html"><strong aria-hidden="true">1.2.</strong> What is Safety</a></li><li class="chapter-item expanded "><a href="introduction/usability.html"><strong aria-hidden="true">1.3.</strong> Usability</a></li></ol></li><li class="chapter-item expanded "><a href="design-principles.html"><strong aria-hidden="true">2.</strong> Design Principles</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="design-principles/unification.html"><strong aria-hidden="true">2.1.</strong> Unifying Privacy, Availability, and Privacy</a></li><li class="chapter-item expanded "><a href="design-principles/roles-and-their-needs.html"><strong aria-hidden="true">2.2.</strong> Roles and Their Needs</a></li><li class="chapter-item expanded "><a href="design-principles/modularity.html"><strong aria-hidden="true">2.3.</strong> Modularity</a></li><li class="chapter-item expanded "><a href="design-principles/economic-sustainability.html"><strong aria-hidden="true">2.4.</strong> Economic Sustainability</a></li></ol></li><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">3.</strong> Overview</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="overview/consensus-layer.html"><strong aria-hidden="true">3.1.</strong> Consensus Layer</a></li><li class="chapter-item expanded "><a href="overview/wallet-data-availability.html"><strong aria-hidden="true">3.2.</strong> Wallet Data Availability</a></li><li class="chapter-item expanded "><a href="overview/wallet-reception.html"><strong aria-hidden="true">3.3.</strong> Wallet Reception</a></li><li class="chapter-item expanded "><a href="overview/network-privacy.html"><strong aria-hidden="true">3.4.</strong> Network Privacy</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Zcash Modular Scalable Payments Architecture</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>The Zcash Modular Scalable Payments Architecture (MSPA) is a theoretical new blockchain architecture specialized for Zcash shielded payments and storage.</p>
+<p>The intent behind the name:</p>
+<ul>
+<li><em>Modular</em>: Different required functionality is provided by distinct types of infrastructure for consensus, double-spend prevention, data availability, and network privacy.</li>
+<li><em>Scalable</em>: The goal of the architecture is to support a high level of usage for relatively low typical transaction fees.</li>
+<li><em>Payments</em>: The architecture is specialized to shielded Zcash payments.</li>
+</ul>
+<p>The ideas described in this document are not currently part of the Zcash roadmap in any capacity I'm aware of, see <a href="./introduction/status.html">Status</a>.</p>
+<p>Contributions welcome on the <a href="https://github.com/nathan-at-least/zcash-mspa-book">source repository 🡕</a>!</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="status"><a class="header" href="#status">Status</a></h1>
+<p>As of 2022-09-22,</p>
+<p>This document site presents a hypothetical and under-specified vision for a potential future Zcash architecture written by me, Nate Wilcox (<a href="https://twitter.com/nate_zec">Twitter <code>@nate_zec</code> 🡕</a>, <a href="https://github.com/nathan-at-least">GitHub <code>@nathan-at-least</code> 🡕</a>).</p>
+<p>The ideas here are &quot;unofficial&quot; and there are currently no plans at <a href="https://electriccoin.co/blog/">Electric Coin Co 🡕</a> or among the Zcash development community to pursue these ideas. I intend to refine and share these ideas across the Zcash community to see how feasible and beneficial this kind of architecture could be, but I don't promise any timeline or outcome.</p>
+<h2 id="acknowledgements"><a class="header" href="#acknowledgements">Acknowledgements</a></h2>
+<p>The ideas in this document were stimulated from a variety of discussions with Zooko, Sean Bowe, Steven Smith, Vitalik Buterin, David Campbell, and too many others to name. I take full responsibility for their presentation here and do not claim any of those great conversation partners endorse any particular idea here.</p>
+<h2 id="updates"><a class="header" href="#updates">Updates</a></h2>
+<p>I will update this document site as I continue to have discussions and develop the ideas, and reserve the possibility to substantially change the contents. I will update this section if any of the above changes, including if I find that the central tenants of these ideas are infeasible.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="what-is-safety"><a class="header" href="#what-is-safety">What is Safety?</a></h1>
+<p>We place substantial significance behind the term &quot;safety&quot;, and we rely on that word to anchor technical feature goals behind a human-centric notion:</p>
+<p>Safety means any user can rely on the system to perform what they intend without unnecessarily placing them in harms way.</p>
+<p>In practice, safety requires many of the more well-known cryptocurrency principles:</p>
+<p><strong>Privacy by Default:</strong> We believe people should not have to have esoteric knowledge to know which details of their behavior are exposed to which ambient third parties based on technical trivia. So, the technology must protect, as best as possible, the privacy of user behavior so that only the information they intend to disclose is available and only to the parties they intend to disclose it to.</p>
+<p><strong>Permissionlessness:</strong> If a person comes to rely on a technology only to later discover they are vulnerable to gate-keeping or censorship by a third-party without their consent, that technology fails to provide safety. So the technology must provide permissionless access so that any person is free to use it at any time at their discretion.</p>
+<p><strong>Reliability:</strong> The technology needs to function reliably at any time so that people can justifiably depend on it.</p>
+<p><strong>Resilience:</strong> If the network of participants fails to maintain and improve the technology over time, people who rely on it may one day find it no longer works. The technology must remain resilient through time under changing conditions and a variety of adversarial environments.</p>
+<p>We posit that other commonly touted blockchain principles such as decentralization, capture resistance, availability, resilient governance, and platform neutrality all stem from these core deeper principles underlying our use of the word safety.</p>
+<p>Of particular note is <em>economic sustainability</em> which we frame as a requirement implied by reliability, and resilience, and which permissionlessness facilitates.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="usability"><a class="header" href="#usability">Usability</a></h1>
+<p>The usability model for Zcash MSPA is as follows:</p>
+<ul>
+<li>Users may install and utilize a variety of <em>wallets</em>. More options are generally better.</li>
+<li>A user can freely create as many <em>addresses</em> as they need or desire at no cost.</li>
+<li>Each address controls a distinct set of <code>ZEC</code> funds.</li>
+<li>Each address is controlled entirely by a <em>spend authority</em>: anyone with knowledge of this <em>spend authority</em> can observe an address's entire history and spend any funds.</li>
+<li>Each address has an associated <em>viewing key</em> which allows anyone with knowledge thereof to view the entire history and future interactions of the address. However, a viewing key <em>cannot</em> spend any funds held by an address or effect any other changes. Anyone with knowledge of a spend authority can derive the associated viewing key. It is not possible to determine the spend authority given a viewing key.</li>
+<li>Given a destination address, a wallet holding a spend authority can initiate a transfer of funds controlled by that spend authority to be received by the destination address. When a sending wallet initiates a transfer, it generates all necessary information locally <em>non-interactively</em><sup class="footnote-reference"><a href="#1">1</a></sup>, then it interacts with the Zcash MSPA to effect the transfer.</li>
+<li>When such a transfer is initiated, it will either become <em>finalized</em> by the protocol, or it will <em>fail to finalize</em> in a known limited amount of time.</li>
+<li>The protocol futher requires various <em>fees</em> to enable reliability and resilience which are requirements of safety. [<strong>TODO:</strong> Flesh out how fees relate to MSPA better.]</li>
+</ul>
+<p><strong>Wallet Data Availability:</strong> In a crucial departure from modern Zcash and many cryptocurrencies, the Zcash MSPA <em>does not</em> directly support data availability for wallets!</p>
+<p>This means that wallets <em>bear the sole responsibility</em> for ensuring:</p>
+<ul>
+<li>received funds are available to be spent</li>
+<li>history is preserved</li>
+<li>restoring from a backup is successful</li>
+</ul>
+<p>Wallets may rely on one or more <em>wallet data availability providers</em> to achieve this goal, as described in the <a href="introduction/../overview/wallet-data-availability.html">Wallet Data Availability</a> section.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>The requirement for sending to be non-interactive is tenuous, because this may be a fruitful requirement to relax to better achieve a balance of overall goals.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="design-principles"><a class="header" href="#design-principles">Design Principles</a></h1>
+<p>This section covers insights, roles, modularity, and economic sustainability.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="unifying-privacy-availability-and-privacy"><a class="header" href="#unifying-privacy-availability-and-privacy">Unifying Privacy, Availability, and Privacy</a></h1>
+<p>A key insight behind Zcash MSPA is that scalability, data availability, and privacy are all deeply connected:</p>
+<ul>
+<li>Data must be <em>available</em> to those who need it.</li>
+<li>Privacy requires that data must <em>not be available</em> to anyone except the intended participants.</li>
+<li><em>Scalability</em> requires that data must propagate as efficiently as possible to only those who need it.</li>
+</ul>
+<p>These goals are mutually supportive and form three pillars supporting the overall safety goals.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="roles-and-their-needs"><a class="header" href="#roles-and-their-needs">Roles and Their Needs</a></h1>
+<p>Stepping back to review the needs of a safe payments system, consider which participants need to know what information:</p>
+<div class="table-wrapper"><table><thead><tr><th>Role</th><th>Need</th></tr></thead><tbody>
+<tr><td>Holder</td><td>To see their balance and the history that lead to it.</td></tr>
+<tr><td>Spender</td><td>To know a recipient did or did not receive a transfer in a timely fashion.</td></tr>
+<tr><td>Recipient</td><td>To know they've received a transfer, how much, any message from the sender associated with the payment, and that the payment is legitimately reliable.</td></tr>
+<tr><td>Spenders and Receipients</td><td>To know their activity has strong privacy so that only parties they intend to disclose information to are privy to it.</td></tr>
+<tr><td>All Participants</td><td>To know every transfer conserves the scarcity of <code>ZEC</code>, ie there are no double-spends or counterfeiting exploits.</td></tr>
+<tr><td>All Infrastructure Providers</td><td>To know that their contribution is economically sustainable over long enough time periods.</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="modularity"><a class="header" href="#modularity">Modularity</a></h1>
+<p>Because the Zcash MSPA distinguishes infrastructure into specialized provider roles, each role can be developed in a decoupled fashion from the others, constrained only by their respective <em>interfaces</em>.</p>
+<p>In addition to the protocol for a given role evolving in a decoupled fashion, alternative designs for a given role can be simultaneously deployed. For example, a Zcash MSPA blockchain might be in operation with two or more distinct Network Privacy Provider protocols, any number of Wallet Data Availability or Wallet Reception Providers, and so on.</p>
+<p>It is even the case that a Zcash MSPA blockchain <em>may</em> have multiple Consensus Layer Provider protocols provided there is appropriate mechanisms to protect overall consensus of <code>ZEC</code> scarcity and economic constraints!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sustainability"><a class="header" href="#sustainability">Sustainability</a></h1>
+<p>In order for a Zcash MSPA blockchain to remain reliable and resilient, all of the provider roles must be economically sustainable. The specifics of how each provider role can be sustainable may depend on the particular provider protocol designs. Here we offer two broad classes of mechanism that may facilitate reliability and resilience through economic sustainability:</p>
+<ul>
+<li>Pay for Use: in this model, participants pay providers &quot;directly&quot; or &quot;in-band&quot; to ensure their economic sustainability. An example of this would be a payment protocol that ensures NPPs, WRPs, and WDAPs are paid by a sender only when a recipient receives a transfer.</li>
+<li>Consensus Payments: in this model, the consensus rules issue payments to various service providers as part of its issuance (or <em>Posterity Fund disbursements</em>, see <a href="https://electriccoin.co/blog/long-term-sustainability-with-the-zcash-posterity-fund/">Long-term sustainability with the Zcash Posterity Fund 🡕</a>).</li>
+</ul>
+<p>Each approach presents significant challenges. Two common challenges to both approaches is ensuring the payments are sufficient to economically sustain the providers while also being low enough to encourage adoption and usage by end users.</p>
+<p>Some challenges for Pay for Use include ensuring that the payment protocol:</p>
+<ul>
+<li>pays only the correct providers, or pays the most productive providers on average,</li>
+<li>does not violate Privacy by Default safety,</li>
+</ul>
+<p>A key challenge for Consensus Payments is the constraint that the consensus protocol must make payments contingent on its ability to verify a provider is correctly providing a service.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="high-level-architecture-overview"><a class="header" href="#high-level-architecture-overview">High Level Architecture Overview</a></h1>
+<p>The high level MSPA architecture follows directly from meeting the needs of the participants in a modular, scalable fashion while preserving the fundamental safety guarantees.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="consensus-layer-providers"><a class="header" href="#consensus-layer-providers">Consensus Layer Providers</a></h1>
+<p>Consensus layer providers (aka CLPs) are responsible for protecting the scarcity of <code>ZEC</code> and implementing economic constraints to ensure reliability and resilience which are necessary for safety.</p>
+<p>In the Zcash MSPA, the <em>only</em> interaction between users and consensus is these two mechanisms:</p>
+<ul>
+<li>A recipient's <em>Wallet Reception Provider</em> (see <a href="overview/./wallet-reception.html">Wallet Reception</a>) must be able to submit a <em>finalization payload</em> to the consensus layer.</li>
+<li>Sender and recipients must learn when transfers they are parties to become finalized.</li>
+</ul>
+<p><strong>[TODO / BUG]</strong> How do senders and recipients learn that their transfer has been finalized?</p>
+<p>To achieve the goal of Privacy by Default <em>only</em> the senders and recipients which are parties to a transfer are able to learn when the relevant transfer becomes finalized.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wallet-data-availability-providers"><a class="header" href="#wallet-data-availability-providers">Wallet Data Availability Providers</a></h1>
+<p>Because only the sender and recipient need to know about a given transfer, this implies that a modular data availability solution can be specialized to senders and recipients, rather than global.</p>
+<p>In Zcash MSPA this function is decoupled in a modular fashion from the rest of the architecture and provided by <em>Wallet Data Availability Providers</em> (aka WDAPs). Each wallet is responsible for ensure data availability for wallet-specific data (which also happens to be private to the wallet user).</p>
+<h2 id="wdap-requirements"><a class="header" href="#wdap-requirements">WDAP Requirements</a></h2>
+<p>A WDAP must:</p>
+<ul>
+<li>provide the full history of an address to a wallet on demand,</li>
+<li>persistently store locally generated modifications of wallet state, especially sender-initiated transfer information,</li>
+<li>be highly available in order to receive transfers at any time (see <a href="overview/./wallet-reception.html">Wallet Reception</a>).</li>
+<li>persistently store remotely generated modifications of wallet state, especially incoming transfers including the <code>ZEC</code> transferred and associated messages,</li>
+<li>and finally, enable users to restore this data in the event that their wallet device is destroyed or otherwise needs to be restored.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wallet-reception-providers"><a class="header" href="#wallet-reception-providers">Wallet Reception Providers</a></h1>
+<p>Recall that only senders and recipients need and should know most details of a transfer. The only exception to this is that all participants must know that no transfer between any parties violates <code>ZEC</code> scarcity by double spending or other counterfeiting exploits.</p>
+<p>Because transfers are non-interactively (see <a href="overview/../introduction/usability.html#1">Usability (Footnote 1)</a>) generated by senders, sending wallets must directly use their WDAP to persist that information locally. However, they must later learn that a transfer was finalized.</p>
+<p>However, recipients must come to learn relevant details of a transfer, including:</p>
+<ul>
+<li>a <em>payload</em> including:
+<ul>
+<li>the amount of <code>ZEC</code> and associated messages for the transfer, and</li>
+<li>any cryptographic information necessary to control the received <code>ZEC</code> with their spend authority,</li>
+</ul>
+</li>
+<li>and that the transfer occurred and is finalized.</li>
+</ul>
+<p>In traditional Zcash shielded transfers, this data is all encrypted and posted globally to the blockchain which provides global data availability to all wallets. This violates the principle of unifying scalability, data availability, and privacy by sacrificing the first for the latter two.</p>
+<p>In Zcash MSPA, by contrast, a sending wallet transmits the payload directly to the recipient's <em>Wallet Reception Provider</em> (aka WRP), which enables scalability by leaving all data specific to sender and recipient out of global state tracking.</p>
+<h2 id="wrp-requirements"><a class="header" href="#wrp-requirements">WRP Requirements</a></h2>
+<p>A WRP must:</p>
+<ul>
+<li>be highly available to receive transfers at any time,</li>
+<li>persist an incoming transfer in the receiving wallets WDAP,</li>
+<li>submit any necessary data to the <em>consensus layer</em> to ensure it is finalized,</li>
+<li>then (and only then) notify the receiving wallet at the earliest possible time.</li>
+</ul>
+<p>This design is aimed at achieving two essential goals:</p>
+<ul>
+<li>First, by being highly available, a WRP enables transfers to any recipient at any time, regardless of if the recipient's wallet UI is active.</li>
+<li>Second, by persisting the payload in the recipient's WDAP prior to finalizing a transfer, the WRP &amp; WDAP ensure <em>consistency</em> of the payment protocol by avoiding the case where consensus finalizes a transfer that cannot be retrieved by a receiving wallet.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="network-privacy-providers"><a class="header" href="#network-privacy-providers">Network Privacy Providers</a></h1>
+<p>As defined in <a href="overview/../introduction/what-is-safety.html">What is Safety</a>, the system must provide Privacy by Default. The Zcash shielded payment protocols provide best-in-class privacy for ledger history. However, those protocols do not encompass network privacy. Without network privacy, various metadata is exposed to arbitrary third parties outside the awareness of senders or receivers which violates the goal of Privacy by Default.</p>
+<p>Therefore, the Zcash MSPA requires strong network privacy which comes from <em>Network Privacy Providers</em> (aka NPPs).</p>
+<h2 id="npp-requirements"><a class="header" href="#npp-requirements">NPP Requirements</a></h2>
+<p>A NPP must:</p>
+<ul>
+<li>be highly available to facilitate transfers and finalization at any time,</li>
+<li>enable a sender to deliver a transfer payload to a recipient's WRP,</li>
+<li>protect both sender and recipient network location from all parties, including each other or any other party,</li>
+<li>protect, as well as possible, timing metadata so that no party may distinguish some senders from others based on timing information at the consensus layer.</li>
+</ul>
+<p><strong>Implications:</strong></p>
+<p>Because NPP's must enable a sender to deliver to a specific recipient's WRP at any time, the recipient's address must encode sufficient information to enable the sender's wallet and the NPP to achieve this.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>
