@@ -7,7 +7,7 @@ The usability model for Zcash MSPA is as follows:
 - Each address controls a distinct set of `ZEC` funds.
 - Each address is controlled entirely by a _spend authority_: anyone with knowledge of this _spend authority_ can observe an address's entire history and spend any funds.
 - Each address has an associated _viewing key_ which allows anyone with knowledge thereof to view the entire history and future interactions of the address. However, a viewing key _cannot_ spend any funds held by an address or effect any other changes. Anyone with knowledge of a spend authority can derive the associated viewing key. It is not possible to determine the spend authority given a viewing key.
-- Given a destination address, a wallet holding a spend authority can initiate a transfer of funds controlled by that spend authority to be received by the destination address. When a sending wallet initiates a transfer, it generates all necessary information locally _non-interacitvely_[^1], then it interacts with the Zcash MSPA to effect the transfer.
+- Given a destination address, a wallet holding a spend authority can initiate a transfer of funds controlled by that spend authority to be received by the destination address. When a sending wallet initiates a transfer, it generates all necessary information locally _non-interactively_[^1], then it interacts with the Zcash MSPA to effect the transfer.
 - When such a transfer is initiated, it will either become _finalized_ by the protocol, or it will _fail to finalize_ in a known limited amount of time.
 - The protocol futher requires various _fees_ to enable reliability and resilience which are requirements of safety. [**TODO:** Flesh out how fees relate to MSPA better.]
 
