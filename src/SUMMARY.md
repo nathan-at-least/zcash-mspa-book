@@ -1,6 +1,7 @@
 # Summary
 
 - [Introduction](./introduction.md)
+  - [Status](./introduction/status.md)
   - [What is Safety](./introduction/what-is-safety.md)
   - [Usability](./introduction/usability.md)
 - [Design Principles](./design-principles.md)
