@@ -1,6 +1,6 @@
 # Network Privacy Providers
 
-As defined in [What is Safety?](#what-is-safety), the system must provide Privacy by Default. The Zcash shielded payment protocols provide best-in-class privacy for ledger history. However, those protocols do not encompass network privacy. Without network privacy, various metadata is exposed to arbitrary third parties outside the awareness of senders or receivers which violates the goal of Privacy by Default.
+As defined in [What is Safety](../introduction/what-is-safety.md), the system must provide Privacy by Default. The Zcash shielded payment protocols provide best-in-class privacy for ledger history. However, those protocols do not encompass network privacy. Without network privacy, various metadata is exposed to arbitrary third parties outside the awareness of senders or receivers which violates the goal of Privacy by Default.
 
 Therefore, the Zcash MSPA requires strong network privacy which comes from _Network Privacy Providers_ (aka NPPs).
 

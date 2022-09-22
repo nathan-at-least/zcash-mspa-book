@@ -19,6 +19,6 @@ This means that wallets _bear the sole responsibility_ for ensuring:
 - history is preserved
 - restoring from a backup is successful
 
-Wallets may rely on one or more _wallet data availability providers_ to achieve this goal, as described in the [FIXME High Level Architecture Overview](#high-level-architecture-overview).
+Wallets may rely on one or more _wallet data availability providers_ to achieve this goal, as described in the [Wallet Data Availability](../overview/wallet-data-availability.md) section.
 
 [^1]: The requirement for sending to be non-interactive is tenuous, because this may be a fruitful requirement to relax to better achieve a balance of overall goals.

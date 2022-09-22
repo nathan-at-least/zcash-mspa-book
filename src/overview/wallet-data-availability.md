@@ -10,6 +10,6 @@ A WDAP must:
 
 - provide the full history of an address to a wallet on demand,
 - persistently store locally generated modifications of wallet state, especially sender-initiated transfer information,
-- be highly available in order to receive transfers at any time (see [Wallet Reception Providers](#wallet-reception-providers).
+- be highly available in order to receive transfers at any time (see [Wallet Reception](./wallet-reception.md)).
 - persistently store remotely generated modifications of wallet state, especially incoming transfers including the `ZEC` transferred and associated messages,
 - and finally, enable users to restore this data in the event that their wallet device is destroyed or otherwise needs to be restored.

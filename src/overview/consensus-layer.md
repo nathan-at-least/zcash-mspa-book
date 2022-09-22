@@ -4,7 +4,7 @@ Consensus layer providers (aka CLPs) are responsible for protecting the scarcity
 
 In the Zcash MSPA, the _only_ interaction between users and consensus is these two mechanisms:
 
-- A recipient's _Reception Provider_ (see [Reception Providers](#reception-providers) below) must be able to submit a _finalization payload_ to the consensus layer.
+- A recipient's _Wallet Reception Provider_ (see [Wallet Reception](./wallet-reception.md)) must be able to submit a _finalization payload_ to the consensus layer.
 - Sender and recipients must learn when transfers they are parties to become finalized.
 
 **[TODO / BUG]** How do senders and recipients learn that their transfer has been finalized?
